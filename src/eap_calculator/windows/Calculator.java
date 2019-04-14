@@ -391,9 +391,7 @@ public class Calculator extends javax.swing.JFrame implements KeyListener {
             canAddDot = true;
             canAddOperator = true;
 
-            // https://stackoverflow.com/questions/3422673/how-to-evaluate-a-math-expression-given-in-string-form
             try {
-                ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
                 String eval = engine.eval(output.getText()).toString();
 
                 output.setText(eval);
@@ -496,6 +494,9 @@ public class Calculator extends javax.swing.JFrame implements KeyListener {
     private Boolean canAddDot = true;
     private Boolean canAddOperator = true;
     private Boolean canEvaluate = false;
+
+    // https://stackoverflow.com/questions/3422673/how-to-evaluate-a-math-expression-given-in-string-form
+    private final ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
 
     public Calculator addKeyListener() {
         output.addKeyListener(this);
