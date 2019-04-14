@@ -29,6 +29,12 @@
  */
 package eap_calculator.windows;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 public class Calculator extends javax.swing.JFrame {
 
     /**
@@ -377,9 +383,19 @@ public class Calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinusActionPerformed
 
     private void btnEqualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualActionPerformed
-        canAddDot = true;
-        canAddOperator = true;
         if (canEvaluate) {
+            canAddDot = true;
+            canAddOperator = true;
+
+            // https://stackoverflow.com/questions/3422673/how-to-evaluate-a-math-expression-given-in-string-form
+            try {
+                ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
+                String eval = engine.eval(output.getText()).toString();
+
+                output.setText(eval);
+            } catch (ScriptException ex) {
+                Logger.getLogger(Calculator.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
     }//GEN-LAST:event_btnEqualActionPerformed
