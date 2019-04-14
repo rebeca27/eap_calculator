@@ -76,6 +76,7 @@ public class Calculator extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setLocation(new java.awt.Point(300, 300));
 
+        output.setEditable(false);
         output.setColumns(20);
         output.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         output.setRows(5);
