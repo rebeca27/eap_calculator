@@ -29,13 +29,16 @@
  */
 package eap_calculator.windows;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-public class Calculator extends javax.swing.JFrame {
+public class Calculator extends javax.swing.JFrame implements KeyListener {
 
     /**
      * Creates new form Find
@@ -465,7 +468,7 @@ public class Calculator extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Calculator().setVisible(true);
+                new Calculator().addKeyListener().setVisible(true);
             }
         });
     }
@@ -493,4 +496,67 @@ public class Calculator extends javax.swing.JFrame {
     private Boolean canAddDot = true;
     private Boolean canAddOperator = true;
     private Boolean canEvaluate = false;
+
+    public Calculator addKeyListener() {
+        output.addKeyListener(this);
+        return this;
+    }
+
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyChar()) {
+            case '0':
+                btn0ActionPerformed(null);
+                break;
+            case '1':
+                btn1ActionPerformed(null);
+                break;
+            case '2':
+                btn2ActionPerformed(null);
+                break;
+            case '3':
+                btn3ActionPerformed(null);
+                break;
+            case '4':
+                btn4ActionPerformed(null);
+                break;
+            case '5':
+                btn5ActionPerformed(null);
+                break;
+            case '6':
+                btn6ActionPerformed(null);
+                break;
+            case '7':
+                btn7ActionPerformed(null);
+                break;
+            case '8':
+                btn8ActionPerformed(null);
+                break;
+            case '9':
+                btn9ActionPerformed(null);
+                break;
+            case '+':
+                btnPlusActionPerformed(null);
+                break;
+            case '-':
+                btnMinusActionPerformed(null);
+                break;
+            case '=':
+                btnEqualActionPerformed(null);
+                break;
+            case '.':
+                btnDotActionPerformed(null);
+                break;
+            default:
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnEqualActionPerformed(null);
+                }
+                break;
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
 }
