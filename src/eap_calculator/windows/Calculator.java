@@ -291,74 +291,102 @@ public class Calculator extends javax.swing.JFrame {
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         output.setText(output.getText() + "2");
+        canAddOperator = true;
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         output.setText(output.getText() + "1");
+        canAddOperator = true;
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         output.setText(output.getText() + "3");
+        canAddOperator = true;
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         output.setText(output.getText() + "4");
+        canAddOperator = true;
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         output.setText(output.getText() + "5");
+        canAddOperator = true;
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         output.setText(output.getText() + "6");
+        canAddOperator = true;
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         output.setText(output.getText() + "7");
+        canAddOperator = true;
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         output.setText(output.getText() + "8");
+        canAddOperator = true;
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         output.setText(output.getText() + "9");
+        canAddOperator = true;
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         output.setText(output.getText() + "0");
+        canAddOperator = true;
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnDotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDotActionPerformed
         if (canAddDot) {
             output.setText(output.getText() + ".");
             canAddDot = false;
+            canAddOperator = true;
         }
     }//GEN-LAST:event_btnDotActionPerformed
 
     private void btnPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlusActionPerformed
-        output.setText(output.getText() + "+");
-        canAddDot = true;
+        if (canAddOperator) {
+            output.setText(output.getText() + "+");
+            canAddDot = true;
+            canAddOperator = false;
+        }
     }//GEN-LAST:event_btnPlusActionPerformed
 
     private void btnMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinusActionPerformed
-        output.setText(output.getText() + "-");
-        canAddDot = true;
+        if (canAddOperator) {
+            output.setText(output.getText() + "-");
+            canAddDot = true;
+            canAddOperator = false;
+        }
     }//GEN-LAST:event_btnMinusActionPerformed
 
     private void btnEqualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualActionPerformed
         canAddDot = true;
+        canAddOperator = true;
     }//GEN-LAST:event_btnEqualActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         output.setText("");
         canAddDot = true;
+        canAddOperator = true;
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         String val = output.getText();
-        if (val.charAt(val.length() - 1) == '.') {
-            canAddDot = true;
+
+        switch (val.charAt(val.length() - 1)) {
+            case '.':
+                canAddDot = true;
+                break;
+            case '+':
+                canAddOperator = true;
+                break;
+            case '-':
+                canAddOperator = true;
+                break;
         }
 
         if (!val.isEmpty()) {
@@ -424,4 +452,5 @@ public class Calculator extends javax.swing.JFrame {
     private javax.swing.JTextArea output;
     // End of variables declaration//GEN-END:variables
     private Boolean canAddDot = true;
+    private Boolean canAddOperator = true;
 }
