@@ -551,10 +551,18 @@ public class Calculator extends javax.swing.JFrame implements KeyListener {
                 btnDotActionPerformed(null);
                 break;
             default:
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    btnEqualActionPerformed(null);
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        btnEqualActionPerformed(null);
+                        break;
+                    case KeyEvent.VK_ESCAPE:
+                        btnClearActionPerformed(null);
+                        break;
+                    case KeyEvent.VK_BACK_SPACE:
+                        btnDelActionPerformed(null);
+                        break;
+                    default:
                 }
-                break;
         }
     }
 
