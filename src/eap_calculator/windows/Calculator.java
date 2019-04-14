@@ -330,28 +330,37 @@ public class Calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnDotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDotActionPerformed
-        output.setText(output.getText() + ".");
+        if (canAddDot) {
+            output.setText(output.getText() + ".");
+            canAddDot = false;
+        }
     }//GEN-LAST:event_btnDotActionPerformed
 
     private void btnPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlusActionPerformed
         output.setText(output.getText() + "+");
+        canAddDot = true;
     }//GEN-LAST:event_btnPlusActionPerformed
 
     private void btnMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinusActionPerformed
         output.setText(output.getText() + "-");
+        canAddDot = true;
     }//GEN-LAST:event_btnMinusActionPerformed
 
     private void btnEqualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualActionPerformed
-        // TODO add your handling code here:
+        canAddDot = true;
     }//GEN-LAST:event_btnEqualActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         output.setText("");
+        canAddDot = true;
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         String val = output.getText();
-        
+        if (val.charAt(val.length() - 1) == '.') {
+            canAddDot = true;
+        }
+
         if (!val.isEmpty()) {
             output.setText(val.substring(0, val.length() - 1));
         }
@@ -414,5 +423,5 @@ public class Calculator extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea output;
     // End of variables declaration//GEN-END:variables
-
+    private Boolean canAddDot = true;
 }
